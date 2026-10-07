@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ShopKart - Modern E-Commerce</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="header">
+
+        <div class="container nav">
+
+            <a href="#" class="logo">
+                Shop<span>Kart</span>
+            </a>
+
+
+            <div class="search">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for products, brands and more..."
+                >
+
+                <button id="searchBtn">
+                    Search
+                </button>
+
+            </div>
+
+
+            <div class="nav-actions">
+
+                <button
+                    id="themeBtn"
+                    class="nav-btn"
+                    title="Theme"
+                >
+                    🌙
+                </button>
+
+
+                <button
+                    id="wishlistBtn"
+                    class="nav-btn"
+                    title="Wishlist"
+                >
+                    ❤️
+                    <span
+                        id="wishlistCount"
+                        class="count"
+                    >
+                        0
+                    </span>
+                </button>
+
+
+                <button
+                    id="cartBtn"
+                    class="nav-btn cart-button"
+                    title="Cart"
+                >
+                    🛒
+                    <span
+                        id="cartCount"
+                        class="count"
+                    >
+                        0
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         HERO
+    ====================================== -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <span class="hero-badge">
+                    🔥 Mega Shopping Sale
+                </span>
+
+                <h1>
+                    Everything you need,
+                    <span>all in one place.</span>
+                </h1>
+
+                <p>
+                    Discover amazing products at unbeatable
+                    prices. Shop smarter, shop faster.
+                </p>
+
+                <button
+                    id="shopNowBtn"
+                    class="hero-btn"
+                >
+                    Shop Now →
+                </button>
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <div class="floating-card card-one">
+                    🛍️
+                </div>
+
+                <div class="floating-card card-two">
+                    🎁
+                </div>
+
+                <div class="hero-circle">
+                    🛒
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         CATEGORY BAR
+    ====================================== -->
+
+    <section class="categories-section">
+
+        <div class="container">
+
+            <div
+                id="categoryList"
+                class="categories"
+            >
+
+                <button
+                    class="category active"
+                    data-category="all"
+                >
+                    <span>✨</span>
+                    All
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="container main">
+
+        <!-- TOOLBAR -->
+
+        <div class="toolbar">
+
+            <div>
+
+                <h2>
+                    Explore Products
+                </h2>
+
+                <p id="resultText">
+                    Loading products...
+                </p>
+
+            </div>
+
+
+            <div class="toolbar-actions">
+
+                <select id="sortSelect">
+
+                    <option value="default">
+                        Sort By
+                    </option>
+
+                    <option value="price-low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="price-high">
+                        Price: High to Low
+                    </option>
+
+                    <option value="rating">
+                        Rating
+                    </option>
+
+                    <option value="discount">
+                        Discount
+                    </option>
+
+                    <option value="name">
+                        Name A-Z
+                    </option>
+
+                </select>
+
+
+                <button
+                    id="filterBtn"
+                    class="filter-btn"
+                >
+                    ⚙ Filters
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FILTER PANEL -->
+
+        <div
+            id="filterPanel"
+            class="filter-panel"
+        >
+
+            <div class="filter-item">
+
+                <label>
+                    Minimum Price
+                </label>
+
+                <input
+                    type="number"
+                    id="minPrice"
+                    placeholder="₹0"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Maximum Price
+                </label>
+
+                <input
+                    type="number"
+                    id="maxPrice"
+                    placeholder="₹100000"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Minimum Rating
+                </label>
+
+                <select id="ratingFilter">
+
+                    <option value="0">
+                        Any Rating
+                    </option>
+
+                    <option value="3">
+                        ⭐ 3+
+                    </option>
+
+                    <option value="4">
+                        ⭐ 4+
+                    </option>
+
+                    <option value="4.5">
+                        ⭐ 4.5+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                id="applyFilter"
+                class="apply-btn"
+            >
+                Apply Filters
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT GRID -->
+
+        <section
+            id="productGrid"
+            class="product-grid"
+        >
+
+            <!-- Products generated by JS -->
+
+        </section>
+
+
+        <!-- LOADING -->
+
+        <div
+            id="loading"
+            class="loading"
+        >
+
+            <div class="spinner"></div>
+
+            <p>
+                Loading products...
+            </p>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div
+            id="error"
+            class="error"
+        >
+
+            <div>😕</div>
+
+            <h2>
+                Something went wrong
+            </h2>
+
+            <p>
+                Unable to load products.
+            </p>
+
+            <button id="retryBtn">
+                Try Again
+            </button>
+
+        </div>
+
+
+        <!-- EMPTY -->
+
+        <div
+            id="empty"
+            class="empty"
+        >
+
+            <div>
+                🔍
+            </div>
+
+            <h2>
+                No products found
+            </h2>
+
+            <p>
+                Try changing your search or filters.
+            </p>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        <div
+            id="pagination"
+            class="pagination"
+        >
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================
+         PRODUCT MODAL
+    ====================================== -->
+
+    <div
+        id="productModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                id="closeModal"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+            <div
+                id="modalBody"
+                class="modal-body"
+            >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         CART DRAWER
+    ====================================== -->
+
+    <div
+        id="cartOverlay"
+        class="overlay"
+    ></div>
+
+
+    <aside
+        id="cartDrawer"
+        class="cart-drawer"
+    >
+
+        <div class="cart-header">
+
+            <h2>
+                🛒 Your Cart
+            </h2>
+
+            <button
+                id="closeCart"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="cartItems"
+            class="cart-items"
+        >
+
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <button
+                id="checkoutBtn"
+                class="checkout-btn"
+            >
+                Proceed to Checkout →
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         WISHLIST DRAWER
+    ====================================== -->
+
+    <div
+        id="wishlistOverlay"
+        class="overlay"
+    ></div>
+
+
+    <aside
+        id="wishlistDrawer"
+        class="wishlist-drawer"
+    >
+
+        <div class="cart-header">
+
+            <h2>
+                ❤️ Wishlist
+            </h2>
+
+            <button
+                id="closeWishlist"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="wishlistItems"
+            class="wishlist-items"
+        >
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         TOAST
+    ====================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
